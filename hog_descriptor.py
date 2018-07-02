@@ -30,7 +30,7 @@ tic = time.time()
 
 print("time elapsed for hog: {}".format(time.time()-tic))
 
-i = 0
+
 # draw the original bounding boxes
 for (x, y, w, h) in rects:
     cv2.rectangle(orig, (x,y), (x+w, y+h), (0, 0, 255), 2)
@@ -45,17 +45,12 @@ pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
 # draw the final bounding boxes
 for (xA, yA, xB, yB) in pick:
     cv2.rectangle(img, (xA, yA), (xB, yB), (0, 255, 0), 2)
-    # cv2.imshow("After NMS", img)
-    # print("confidence level:", weights[i])
-    # i += 1
-    # cv2.waitKey(0)
 
 
 # show some information on the number of bounding boxes
 filename = pic_dir[pic_dir.rfind("/") + 1:]
 print("[INFO] {}: {} original boxes, {} after suppression".format(\
 		filename, len(rects), len(pick)))
-
 
 
 # show the output images
